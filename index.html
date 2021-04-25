@@ -3,63 +3,76 @@
 <head>
 <title>Testing</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="script.js"></script>
 </head>
 <body>
-<h1>osu! calculator</h1>
-<form class="needs-validation" novalidate>
-  <div class="form-row">
-    <div class="col-md-3 mb-3">
-      <label for="time">Initial Time</label>
-      <input type="number" min="0" class="form-control" id="time" placeholder="Time (in ms)" required>
+<div class="container mt-5">
+    <h1>osu! calculator</h1>
+    <form class="needs-validation" novalidate>
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <label for="time">Initial Time</label>
+            <input type="number" min="0" class="form-control" id="time" placeholder="Time (in ms)" onkeyup="generateSv()" onchange="generateSv()">
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="bpm">BPM</label>
+            <input type="number" min="0" class="form-control" id="bpm" onkeyup="generateSv()" onchange="generateSv()">
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="snap">1/Snapping</label>
+            <input type="number" min="1" max="16" class="form-control" id="snap" onkeyup="generateSv()" onchange="generateSv()">
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="gap">Timing Gap (ms)</label>
+            <input type="number" class="form-control" id="gap" readonly>
+        </div>
     </div>
-    <div class="col-md-3 mb-3">
-      <label for="bpm">BPM</label>
-      <input type="number" min="0" class="form-control" id="bpm" required>
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <label for="sv1">Initial SV</label>
+            <input type="number" min="0" class="form-control" id="sv1" placeholder="Time (in ms)" onkeyup="generateSv()" onchange="generateSv()">
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="sv2">Final SV</label>
+            <input type="number" min="0" class="form-control" id="sv2" onkeyup="generateSv()" onchange="generateSv()">
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="bars">Number of bars</label>
+            <input type="number" min="0" class="form-control" id="bars" placeholder="Number of 4 beat measures" onkeyup="generateSv()" onchange="generateSv()">
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="multi">SV Multiplier</label>
+            <input type="number" class="form-control" id="multi" readonly>
+        </div>
     </div>
-    <div class="col-md-3 mb-3">
-      <label for="snap">1/Snapping</label>
-	  <input type="number" min="1" max="16" class="form-control" id="snap" required>
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <label for="v1">Initial Volume</label>
+            <input type="number" min="0" max="100" class="form-control" id="v1" onkeyup="generateSv()" onchange="generateSv()">
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="v2">Final Volume</label>
+            <input type="number" min="0" max="100" class="form-control" id="v2" onkeyup="generateSv()" onchange="generateSv()">
+        </div>
+		<div class="col-md-3 mb-3">
+            <label for="offset">Offset</label>
+            <input type="number" class="form-control" id="offset" placeholder="Shift SV (in ms)" value="0" onkeyup="generateSv()" onchange="generateSv()">
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="kiai">Kiai</label>
+            <input type="checkbox" class="form-control" id="kiai" onclick="generateSv()" onkeyup="generateSv()" onchange="generateSv()">
+        </div>
     </div>
-	<div class="col-md-3 mb-3">
-      <label for="gap">Timing Gap (ms)</label>
-	  <input type="number" class="form-control" id="gap" readonly>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-3 mb-3">
-      <label for="sv1">Initial SV</label>
-      <input type="number" min="0" class="form-control" id="sv1" placeholder="Time (in ms)" required>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="sv2">Final SV</label>
-      <input type="number" min="0" class="form-control" id="sv2" required>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="bars">Number of bars</label>
-	  <input type="number" min="0" class="form-control" id="bars" placeholder="Number of 4 beat measures" required>
-    </div>
-	<div class="col-md-3 mb-3">
-      <label for="multi">SV Multiplier</label>
-	  <input type="number" class="form-control" id="multi" readonly>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="v1">Initial Volume</label>
-      <input type="number" min="0" class="form-control" id="v1" placeholder="Time (in ms)" required>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="v2">Final Volume</label>
-      <input type="number" min="0" class="form-control" id="v2" required>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="bars">Kiai</label>
-	  <input type="checkbox" class="form-control" id="bars">
-    </div>
-  </div>
-</form>
+    <div class="form-row">
+        <div class="col-md-12 mb-3" onclick="copySv()">
+			<label for="result">(Click to copy)</label>
+			<textarea class="form-control" id="result"></textarea>
+	    </div>
+    </form>
+</div>
 </body>
 </html>
