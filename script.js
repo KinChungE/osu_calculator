@@ -15,8 +15,8 @@ function calculateNoteCount() {
 }
 
 function calculateSvMultiplier() {
-	var sv1 = parseInt(document.getElementById("sv1").value);
-	var sv2 = parseInt(document.getElementById("sv2").value);
+	var sv1 = document.getElementById("sv1").value;
+	var sv2 = document.getElementById("sv2").value;
 	var notecount = calculateNoteCount();
 	var multi = Math.exp((Math.log(sv2)-Math.log(sv1))/notecount);
 	document.getElementById("multi").value = multi;
@@ -29,7 +29,7 @@ function generateSv() {
 	var multi = calculateSvMultiplier();
 	var offset = parseInt(document.getElementById("offset").value);
 	var time = parseInt(document.getElementById("time").value);
-	var sv1 = parseInt(document.getElementById("sv1").value);
+	var sv1 = document.getElementById("sv1").value;
 	var v1 = parseInt(document.getElementById("v1").value);
 	var v2 = parseInt(document.getElementById("v2").value);
 	var kiai = document.getElementById("kiai").value;
