@@ -32,7 +32,7 @@ function generateSv() {
 	var sv1 = document.getElementById("sv1").value;
 	var v1 = parseInt(document.getElementById("v1").value);
 	var v2 = parseInt(document.getElementById("v2").value);
-	var kiai = document.getElementById("kiai").value;
+	var kiai = document.getElementById("kiai").checked;
 	var volumeinc = (v2-v1)/(notecount-1);
 	var output = "";
 	
