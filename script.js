@@ -18,7 +18,7 @@ function calculateSvMultiplier() {
 	var sv1 = document.getElementById("sv1").value;
 	var sv2 = document.getElementById("sv2").value;
 	var notecount = calculateNoteCount();
-	var multi = Math.exp((Math.log(sv2)-Math.log(sv1))/notecount);
+	var multi = Math.exp((Math.log(sv2)-Math.log(sv1))/(notecount+1));
 	document.getElementById("multi").value = multi;
 	return multi;
 }
